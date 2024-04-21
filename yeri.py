@@ -1,3 +1,11 @@
+# # yeri.py
+# # !/usr/local/bin/python3
+
+# #########################################
+# #        python 3.11.4
+# #########################################
+
+
 
 from sqlalchemy import create_engine, Table, MetaData, insert, delete, text, exc
 from faker import Faker
@@ -227,7 +235,7 @@ def getDummyData(columns):
     
 
 # faker 라이브러리에 컬럼명과 같은 메소드가 있는경우 실행
-# 일치하는게 없거나 callabe 객체 가 아닌 경우 error 처리로 스트링 문자열 리턴
+# 일치하는게 없거나 callabe 객체 가 아닌 경우 error 처리로 빈 스트링 문자열 리턴
 def callFakerMethodOfColumnName(columnName):
     try :
         fake = Faker()

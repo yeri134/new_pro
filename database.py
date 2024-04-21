@@ -1,41 +1,39 @@
-#pip install sqlalchemy
+# # # database.py
+# # # !/usr/local/bin/python3
 
-# # database.py
-# # !/usr/local/bin/python3
-
-# #########################################
-# #        python 3.11.4
-# #########################################
+# # #########################################
+# # #        python 3.11.4
+# # #########################################
 
 
-#엔진과 세션 만들어주는 SQLAlchemy 사용에 기본적인 부분입니다
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+# #엔진과 세션 만들어주는 SQLAlchemy 사용에 기본적인 부분입니다
+# from sqlalchemy import create_engine
+# from sqlalchemy.orm import sessionmaker
 
-# 이미 만들어진 데이터베이스의 테이블을 사용하는데 필요한 부분입니다.
-from sqlalchemy import Table, MetaData
-from sqlalchemy import insert, delete
-from sqlalchemy import text
+# # 이미 만들어진 데이터베이스의 테이블을 사용하는데 필요한 부분입니다.
+# from sqlalchemy import Table, MetaData
+# from sqlalchemy import insert, delete
+# from sqlalchemy import text
 
-import Utils
+# import yeri
 
-# 정규식 처리를 위한 라이브러리
-import re
+# # 정규식 처리를 위한 라이브러리
+# import re
 
-SQL_URL = 'mysql+pymysql://root:151227@localhost:3306/airportdb'
-engine = create_engine(SQL_URL, echo=True)
+# SQL_URL = 'mysql+pymysql://root:151227@localhost:3306/airportdb'
+# engine = create_engine(SQL_URL, echo=True)
 
-with engine.connect() as conn:
-    result = conn.execute(text("DESC airline"))
-    print(result.all())
+# with engine.connect() as conn:
+#     result = conn.execute(text("DESC airline"))
+#     print(result.all())
 
-metadata_obj = MetaData()
+# metadata_obj = MetaData()
 
-print(metadata_obj.reflect(engine))
+# print(metadata_obj.reflect(engine))
 
-temp = ()
-stmt = insert(airline).values(iata="99", airlinename="chanhoe2", base_airport="45")
-print(stmt)
+# temp = ()
+# stmt = insert(airline).values(iata="99", airlinename="chanhoe2", base_airport="45")
+# print(stmt)
       
 # airline = {
 #     "table" : Table("airline", metadata_obj, autoload_with=engine)
