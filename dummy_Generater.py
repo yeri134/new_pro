@@ -85,7 +85,7 @@ def insert_dummy_data(tableName, insertCnt, deleteYn):
 def describe_to_columns(list):
     columns = []
     for row in list:
-        columns.append({"name":row[0], "type":get_column_type(row[1]), "length":get_max_length(row[1]), "unique":is_unique(row[3]), "autoIncrement":isAutoIncrement(row[5])})
+        columns.append({"name":row[0], "type":get_column_type(row[1]), "length":get_max_length(row[1]), "unique":is_unique(row[3]), "autoIncrement":is_auto_increment(row[5])})
     return columns
         
         

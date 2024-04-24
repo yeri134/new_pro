@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "dummy-enerator-py"
+version = "1.8.2"
+description = ""
+authors = ["yeri134 <yeri9311@gmail.com>"]
+readme = "README.md"
+packages = [{include = "dummy_enerator"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+SQLAlchemy = "^2.0.29"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
