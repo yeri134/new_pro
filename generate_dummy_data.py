@@ -247,7 +247,7 @@ def call_faker_method_of_column_name(columnName):
         return "";
     
 # json 로드하기  
-with open("insert.json","r") as json_file:
+with open("dummy_data_config.json","r") as json_file:
     data = json.load(json_file)
         
 
