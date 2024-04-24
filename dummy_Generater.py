@@ -30,10 +30,10 @@ metadata_obj = MetaData()
 # tableName : 테이블명 
 # insertCnt : 인서트 할 숫자
 # deleteYn  : 인서트 시작 전 기존 데이터 삭제 여부 (Y or N)
-def insertDummyData(tableName, insertCnt, deleteYn):
+def insert_dummy_data(tableName, insertCnt, deleteYn):
     
     # Get Table Description info
-    desc = getTableDesc(tableName)
+    desc = get_table_description(tableName)
     
     if desc is None:
         print("Target table is not exist. Please Try again.")
@@ -44,12 +44,12 @@ def insertDummyData(tableName, insertCnt, deleteYn):
         print("airline 테이블에는 1332 개의 행 이상 인서트할 수 없습니다.")
     
     # get column info from table description
-    columns = descToCloumns(desc)
+    columns = describe_to_columns(desc)
 
 
     if deleteYn.upper() == 'Y':
         # delete table
-        deleteTable(tableName)
+        delete_table(tableName)
     
 
     
@@ -61,7 +61,7 @@ def insertDummyData(tableName, insertCnt, deleteYn):
             break
         
         # make dummy data list
-        dummy = getDummyData(columns)
+        dummy = get_dummy_data(columns)
                 
         try:
             stmt = insert(table).values(dummy)
@@ -82,15 +82,15 @@ def insertDummyData(tableName, insertCnt, deleteYn):
 # stmt = insert(airline).values(iata="99", airlinename="chanhoe2", base_airport="45")
 # print(stmt)
 
-def descToCloumns(list):
+def describe_to_columns(list):
     columns = []
     for row in list:
-        columns.append({"name":row[0], "type":getType(row[1]), "length":getLength(row[1]), "unique":isUnique(row[3]), "autoIncrement":isAutoIncrement(row[5])})
+        columns.append({"name":row[0], "type":get_column_type(row[1]), "length":get_max_length(row[1]), "unique":is_unique(row[3]), "autoIncrement":isAutoIncrement(row[5])})
     return columns
         
         
 # get column type
-def getType(str):
+def get_column_type(str):
     if str.startswith("char") or str.startswith("varchar"):
         return "string"
     
@@ -110,7 +110,7 @@ def getType(str):
         
 
 # get maximun length
-def getLength(str):
+def get_max_length(str):
     # enum 인 경우 스킵
     if str.startswith("enum"):
         return
@@ -129,19 +129,19 @@ def getLength(str):
     return
 
 # check if the column is unique
-def isUnique(str):
+def is_unique(str):
     if(str == "PRI" or str == "UNI"):
         return True
     return False
 
 # check if the column is auto increment
-def isAutoIncrement(str):
+def is_auto_increment(str):
     if(str == "auto_increment"):
         return True
     return False
 
 # get table description
-def getTableDesc(tableName):
+def get_table_description(tableName):
 
     query = "DESC " + tableName;
 
@@ -153,7 +153,7 @@ def getTableDesc(tableName):
         return None
     
     
-def deleteTable(tableName):
+def delete_table(tableName):
     query = "DELETE FROM " + tableName
     try:    
         with engine.connect() as conn:
@@ -165,7 +165,7 @@ def deleteTable(tableName):
         
 
 # 더미데이터를 생성
-def getDummyData(columns):
+def get_dummy_data(columns):
     fake = Faker()
     row = {};
     
@@ -186,14 +186,14 @@ def getDummyData(columns):
             
         if type == "decimal":
             if columnName == "latitude" or columnName == "longitude":
-                data = callFakerMethodOfColumnName(columnName)
+                data = call_faker_method_of_column_name(columnName)
             else :
                 data = fake.pydecimal(maxLength[0]- maxLength[1], maxLength[1], positive=True) # 소수점 자릿수를 합산하여 decimal 형식으로 변환
             
         if type == "string":
             # faker 라이브러리에 컬럼명과 일치하는 함수가 있을 경우 해당 함수를 호출
             # 예) zipcode 등
-            data = callFakerMethodOfColumnName(columnName)
+            data = call_faker_method_of_column_name(columnName)
             if data == "":
                 len = random.randint(1,maxLength)
                 strFormat = ""
@@ -239,7 +239,7 @@ def getDummyData(columns):
 
 # faker 라이브러리에 컬럼명과 같은 메소드가 있는경우 실행
 # 일치하는게 없거나 callabe 객체 가 아닌 경우 error 처리로 빈 스트링 문자열 리턴
-def callFakerMethodOfColumnName(columnName):
+def call_faker_method_of_column_name(columnName):
     try :
         fake = Faker()
         return getattr(fake, columnName)();
@@ -252,7 +252,7 @@ with open("insert.json","r") as json_file:
         
 
 for row in data :
-    insertDummyData(row['table_name'], row['insert_count'],row['delete_existing'])
+    insert_dummy_data(row['table_name'], row['insert_count'],row['delete_existing'])
 
 
 
