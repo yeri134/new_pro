@@ -1,4 +1,4 @@
-# # dummy_generater.py
+# # generate_dummy_data.py
 # # !/usr/local/bin/python3
 
 # #########################################
@@ -246,7 +246,7 @@ def call_faker_method_of_column_name(columnName):
     except Exception as e:
         return "";
     
-    
+# json 로드하기  
 with open("insert.json","r") as json_file:
     data = json.load(json_file)
         
