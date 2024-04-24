@@ -1,4 +1,4 @@
-# # yeri.py
+# # dummy_generater.py
 # # !/usr/local/bin/python3
 
 # #########################################
