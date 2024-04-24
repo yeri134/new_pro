@@ -19,6 +19,9 @@ import re
 # 랜덤처리용 라이브러리
 import random
 
+# json 파일 가져오기
+import json
+
 SQL_URL = 'mysql+pymysql://root:151227@localhost:3306/airportdb'
 engine = create_engine(SQL_URL, echo=True)
 metadata_obj = MetaData()
@@ -242,22 +245,15 @@ def callFakerMethodOfColumnName(columnName):
         return getattr(fake, columnName)();
     except Exception as e:
         return "";
+    
+    
+with open("insert.json","r") as json_file:
+    data = json.load(json_file)
         
 
+for row in data :
+    insertDummyData(row['table_name'], row['insert_count'],row['delete_existing'])
 
-insertDummyData('airline', 10, "Y")
-insertDummyData('airplane', 10, "Y")
-insertDummyData('airplane_type', 10, "Y")
-insertDummyData('airport', 10, "Y")
-insertDummyData('airport_geo', 10, "Y")
-insertDummyData('airport_reachable', 10, "Y")
-insertDummyData('booking', 10, "Y")
-insertDummyData('employee', 10, "Y")
-insertDummyData('flight', 10, "Y")
-insertDummyData('flight_log', 10, "Y")
-insertDummyData('flightschedule', 10, "Y")
-insertDummyData('passenger', 10, "Y")
-insertDummyData('passengerdetails', 10, "Y")
-insertDummyData('weatherdata', 10, "Y")
+
 
 

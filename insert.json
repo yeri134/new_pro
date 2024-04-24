@@ -1,0 +1,75 @@
+
+
+
+[
+    {
+        "table_name": "airline",
+        "insert_count": 10,
+        "delete_existing": "N"
+    },
+    {
+        "table_name": "airplane",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    },
+    {
+        "table_name": "airplane_type",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    },
+    {
+        "table_name": "airport",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    },
+    {
+        "table_name": "airport_geo",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    },
+    {
+        "table_name": "airport_reachable",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    },
+    {
+        "table_name": "booking",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    },
+    {
+        "table_name": "employee",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    },
+    {
+        "table_name": "flight",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    },
+    {
+        "table_name": "flight_log",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    },
+    {
+        "table_name": "flightschedule",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    },
+    {
+        "table_name": "passenger",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    },
+    {
+        "table_name": "passengerdetails",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    },
+    {
+        "table_name": "weatherdata",
+        "insert_count": 10,
+        "delete_existing": "Y"
+    }
+]
